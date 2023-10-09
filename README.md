@@ -15,4 +15,15 @@ Período: 2010 a 2018.
 
 <p align=center><img src=https://github.com/kauefs/CriminalidadeSP/raw/%40/images/NeighborHoodSP.png width=75%></p>
 
+## DashBoard
+
+StreamLit InterActive DashBoard
+
 <p align=center><img src=https://github.com/kauefs/CriminalidadeSP/raw/%40/images/CriminalidadeSP2.png width=75%></p>
+
+> In order to view DashBoard:
+
+```shell
+pip install streamlit
+streamlit run {path}filename.py
+```
