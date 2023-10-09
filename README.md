@@ -12,3 +12,7 @@
 Fonte: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)
 
 Período: 2010 a 2018.
+
+<p align=center><img src=https://github.com/kauefs/CriminalidadeSP/raw/%40/images/NeighborHoodSP.png width=75%></p>
+
+<p align=center><img src=https://github.com/kauefs/CriminalidadeSP/raw/%40/images/CriminalidadeSP2.png width=75%></p>
