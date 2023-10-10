@@ -57,4 +57,12 @@ if  st.sidebar.checkbox('Complexo', value=True):
 if  st.sidebar.checkbox('Simples'):
     st.subheader('Mapa   Simples:')
     st.map(FilteredDF)
+st.divider()
+with st.container():
+     C1, C2, C3, C4, C5 = st.columns(5)
+     with C1:st.empty()
+     with C2:st.empty()
+     with C3:st.markdown('''©2023™''')
+     with C4:st.empty()
+     with C5:st.empty()
 st.toast('Crime!', icon='🔫')
