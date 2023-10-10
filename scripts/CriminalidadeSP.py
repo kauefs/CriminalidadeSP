@@ -23,7 +23,7 @@ st.sidebar.info( ' {} Registros'.format(FilteredDF.shape[0]))
 if  st.sidebar.checkbox('Tabela de Dados', value=True):
     st.subheader(       'Dados:')
     st.markdown( '''     Fonte: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-    st.markdown(f'''➡️Exibindo   {' **{}** ocorrências'.format(FilteredDF.shape[0])} em **{ano}**:''')
+    st.markdown(f'''➡️ Exibindo {'**{}** ocorrências'.format(FilteredDF.shape[0])} em **{ano}**:''')
     st.write(FilteredDF)
 st.sidebar.write('Opções de Mapa:')
 if  st.sidebar.checkbox('Complexo', value=True):
@@ -49,7 +49,7 @@ if  st.sidebar.checkbox('Complexo', value=True):
                                     api_keys    = None ,
                                     width       ='100%',
                                     height      = 500  ,
-                                    tooltip     = True ,          #{'text':'Bairro {bairro}'},
+                                    tooltip     = True ,
                                     description ='CriminalidadeSP',
                                     effects     = None ,
                                     map_provider='carto',
@@ -57,3 +57,4 @@ if  st.sidebar.checkbox('Complexo', value=True):
 if  st.sidebar.checkbox('Simples'):
     st.subheader('Mapa   Simples:')
     st.map(FilteredDF)
+st.toast('Crime!', icon='🔫')
