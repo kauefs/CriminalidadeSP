@@ -20,22 +20,22 @@ st.sidebar.bar_chart(ocorrencias, height=200, color='#00BFFF')
 ano         =  st.sidebar.slider('Escolha do Ano:', 2010, 2018, 2014)
 FilteredDF  =  df[(df.time.dt.year == ano)]
 st.sidebar.info( ' {} Registros'.format(FilteredDF.shape[0]))
-if  st.sidebar.checkbox('Tabela de Dados', value=True):
-    st.subheader(       'Dados:')
-    st.markdown( '''     Fonte: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-    st.markdown(f'''➡️ Exibindo {'**{}** ocorrências'.format(FilteredDF.shape[0])} em **{ano}**:''')
-    st.write(FilteredDF)
+if   st.sidebar.checkbox('Tabela de Dados', value=True):
+     st.subheader(       'Dados:')
+     st.markdown( '''     Fonte: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
+     st.markdown(f'''➡️ Exibindo {'**{}** ocorrências'.format(FilteredDF.shape[0])} em **{ano}**:''')
+     st.write(FilteredDF)
 st.sidebar.write('Opções de Mapa:')
-if  st.sidebar.checkbox('Complexo', value=True):
-    st.subheader('Mapa   Complexo:')
-    st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
-                                                          latitude =-23.55,
-                                                          zoom     =  8   ,
-                                                          min_zoom =  None,
-                                                          max_zoom =  None,
-                                                          pitch    = 50   ,
-                                                          bearing  = 50)  ,
-                                    layers=[pdk.Layer('HexagonLayer'      ,
+if   st.sidebar.checkbox('InterAtivo', value=True):
+     st.subheader('Mapa   InterAtivo:')
+     st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
+                                                               latitude =-23.55,
+                                                               zoom     =  8   ,
+                                                               min_zoom =  None,
+                                                               max_zoom =  None,
+                                                               pitch    = 50   ,
+                                                               bearing  = 50)  ,
+                                          layers=[pdk.Layer('HexagonLayer'      ,
                                             data           = FilteredDF,
                                             get_position   = '[longitude,latitude]',
                                             auto_highlight = True,
@@ -44,19 +44,19 @@ if  st.sidebar.checkbox('Complexo', value=True):
                                             pickable=True,
                                             extruded=True,
                                             coverage=1)],
-                                    views=[{'@@type':'MapView', 'controller':True}],
-                                    map_style   ='dark',
-                                    api_keys    = None ,
-                                    width       ='100%',
-                                    height      = 500  ,
-                                    tooltip     = True ,
-                                    description ='CriminalidadeSP',
-                                    effects     = None ,
-                                    map_provider='carto',
-                                    parameters  = None))
-if  st.sidebar.checkbox('Simples'):
-    st.subheader('Mapa   Simples:')
-    st.map(FilteredDF)
+                                          views=[{'@@type':'MapView', 'controller':True}],
+                                          map_style   ='dark',
+                                          api_keys    = None ,
+                                          width       ='100%',
+                                          height      = 500  ,
+                                          tooltip     = True ,
+                                          description ='CriminalidadeSP',
+                                          effects     = None ,
+                                          map_provider='carto',
+                                          parameters  = None))
+if   st.sidebar.checkbox('Simples'):
+     st.subheader('Mapa   Simples:')
+     st.map(FilteredDF)
 st.divider()
 with st.container():
      C1, C2, C3, C4, C5 = st.columns(5)
