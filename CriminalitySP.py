@@ -57,12 +57,10 @@ if   st.sidebar.checkbox('3D', value=True):
 if   st.sidebar.checkbox('2D'):
      st.subheader('       2D Map:')
      st.map(FilteredDF)
-st.divider()
-with st.container():
-     C1, C2, C3, C4, C5 = st.columns(5)
+st.sidebar.divider()
+with st.sidebar.container():
+     C1,  C2,  C3 = st.columns(3)
      with C1:st.empty()
-     with C2:st.empty()
-     with C3:st.markdown('''©2023™''')
-     with C4:st.empty()
-     with C5:st.empty()
+     with C2:st.markdown('''©2023™''')
+     with C3:st.empty()
 st.toast('Crime!', icon='🔫')
