@@ -23,7 +23,7 @@ st.sidebar.info( ' {} Registros'.format(FilteredDF.shape[0]))
 if   st.sidebar.checkbox('Data Table', value=True):
      st.subheader(       'Data:')
      st.markdown( '''     Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-     st.markdown(f'''➡️ Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} em **{ano}**:''')
+     st.markdown(f'''➡️ Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
      st.write(FilteredDF)
 st.sidebar.write('Map Options:')
 if   st.sidebar.checkbox('3D', value=True):
