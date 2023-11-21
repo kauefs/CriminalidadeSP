@@ -9,17 +9,24 @@ def load_data():
     return df
 df          = load_data()
 st.title(    '   Criminality in Sao Paulo')
-st.markdown('''**Criminality** is a recurring problem in major Brazilian cities,
-                 even though there is a constant effort to solve this matter.
-                 Data Science technics may help to better understand the situation at hand,
-                 generating insights to direct public policy to fight crime.''')
+st.markdown('''
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kauefs-blue.svg)](https://www.linkedin.com/in/kauefs/)
+[![GitHub](https://img.shields.io/badge/GitHub-kauefs-black.svg)](https://github.com/kauefs/)
+[![](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
+[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](http://perso.crans.org/besson/LICENSE.html)
+            ''')
+st.write('13 October 2023')
+st.markdown('''
+**Criminality** is a recurring problem in major Brazilian cities, even though there is a constant effort to solve this matter.
+Data Science technics may help to better understand the situation at hand, generating insights to direct public policy to fight crime.
+            ''')
 df.time     =  pd.to_datetime(df.time)
 st.sidebar.title('DashBoard')
 ocorrencias = df.time.dt.year.value_counts().sort_index()
 st.sidebar.bar_chart(ocorrencias, height=200, color='#00BFFF')
 ano         =  st.sidebar.slider('Choose Year:', 2010, 2018, 2014)
 FilteredDF  =  df[(df.time.dt.year == ano)]
-st.sidebar.info( ' {} Registros'.format(FilteredDF.shape[0]))
+st.sidebar.info( ' {} Registries'.format(FilteredDF.shape[0]))
 if   st.sidebar.checkbox('Data Table', value=True):
      st.subheader(       'Data:')
      st.markdown( '''     Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
