@@ -8,7 +8,7 @@ def load_data():
     df      = pd.read_csv('datasets/CriminalidadeSP2.csv')
     return df
 df          = load_data()
-st.title(    '   Sao Paulo Criminality')
+st.title(    '   Criminality in Sao Paulo')
 st.markdown('''**Criminality** is a recurring problem in major Brazilian cities,
                  even though there is a constant effort to solve this matter.
                  Data Science technics may help to better understand the situation at hand,
@@ -21,13 +21,13 @@ ano         =  st.sidebar.slider('Choose Year:', 2010, 2018, 2014)
 FilteredDF  =  df[(df.time.dt.year == ano)]
 st.sidebar.info( ' {} Registros'.format(FilteredDF.shape[0]))
 if   st.sidebar.checkbox('Data Table', value=True):
-     st.subheader(       'Dados:')
-     st.markdown( '''     Fonte: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-     st.markdown(f'''➡️ Showing {'**{}** ocorrencies'.format(FilteredDF.shape[0])} em **{ano}**:''')
+     st.subheader(       'Data:')
+     st.markdown( '''     Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
+     st.markdown(f'''➡️ Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} em **{ano}**:''')
      st.write(FilteredDF)
 st.sidebar.write('Map Options:')
-if   st.sidebar.checkbox('Interative', value=True):
-     st.subheader('       Interative Map:')
+if   st.sidebar.checkbox('3D', value=True):
+     st.subheader('       3D Map:')
      st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
                                                                latitude =-23.55,
                                                                zoom     =  8   ,
@@ -54,8 +54,8 @@ if   st.sidebar.checkbox('Interative', value=True):
                                           effects     = None ,
                                           map_provider='carto',
                                           parameters  = None))
-if   st.sidebar.checkbox('Simple'):
-     st.subheader('       Simple Map:')
+if   st.sidebar.checkbox('2D'):
+     st.subheader('       2D Map:')
      st.map(FilteredDF)
 st.divider()
 with st.container():
