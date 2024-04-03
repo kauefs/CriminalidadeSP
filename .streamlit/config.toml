@@ -27,15 +27,12 @@ enumCoercion                         = 'nameOnly'
 [browser]
 
 gatherUsageStats                     =  false
-serverAddress                        = 'localhost'
 
 [server]
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
-headless                             =  false
 runOnSave                            =  true
-port                                 =  8501
 enableCORS                           =  true
 enableXsrfProtection                 =  true
 maxUploadSize                        =  200
