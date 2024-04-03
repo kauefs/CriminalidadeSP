@@ -6,7 +6,7 @@ st.set_page_config(page_title='SP', page_icon='🔫')
 @st.cache_data
 def load_data():
     df      = pd.read_csv('datasets/CriminalidadeSP2.csv')
-    return df
+    return    df
 df          = load_data()
 st.title(    '   Criminality in Sao Paulo')
 st.markdown('''
@@ -30,7 +30,7 @@ st.sidebar.info( ' {} Registries'.format(FilteredDF.shape[0]))
 if   st.sidebar.checkbox('Data Table', value=True):
      st.subheader(       'Data:')
      st.markdown( '''     Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-     st.markdown(f'''➡️ Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
+     st.markdown(f'''➡️  Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
      st.write(FilteredDF)
 st.sidebar.write('Map Options:')
 if   st.sidebar.checkbox('3D', value=True):
@@ -38,8 +38,8 @@ if   st.sidebar.checkbox('3D', value=True):
      st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
                                                                latitude =-23.55,
                                                                zoom     =  8   ,
-                                                               min_zoom =  None,
-                                                               max_zoom =  None,
+                                                               min_zoom = None ,
+                                                               max_zoom = None ,
                                                                pitch    = 50   ,
                                                                bearing  = 50)  ,
                                           layers=[pdk.Layer('HexagonLayer'     ,
