@@ -4,7 +4,6 @@
 
 disableWidgetStateDuplicationWarning =  false
 showWarningOnDirectExecution         =  true
-dataFrameSerialization               = 'arrow'
 
 [logger]
 
