@@ -2,44 +2,49 @@
 import  pandas   as pd
 import  pydeck   as pdk
 import streamlit as st
-st.set_page_config(page_title='SP', page_icon='🔫')
+st.set_page_config(page_title='SP', page_icon='🔫', layout='wide', initial_sidebar_state='expanded')
+# DATA:
 @st.cache_data
 def load_data():
     df      = pd.read_csv('datasets/CriminalidadeSP2.csv')
     return    df
 df          = load_data()
-st.title(    '   Criminality in Sao Paulo')
-st.markdown('''
+df['time']  = pd.to_datetime(df['time'])
+ocorrencias = df['time'].dt.year.value_counts().sort_index()
+# SIDE:
+st.sidebar.markdown('''
 [![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
 [![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
 [![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
-[![License]( https://img.shields.io/badge/Apache_2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=000000)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License]( https://img.shields.io/github/license/kauefs/StreamLit?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
-with st.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.write('13 October 2023')
-     with cols[2]:st.empty()
+st.sidebar.text( '13 October 2023')
+st.sidebar.divider(               )
+st.sidebar.title('DashBoard')
+st.sidebar.bar_chart(ocorrencias, height=200, color='#00BFFF')
+st.sidebar.write('Map Options:')
+D3          = st.sidebar.empty()
+D2          = st.sidebar.empty()
+ano         = st.sidebar.slider('Year:',     2010, 2018, 2014)
+FilteredDF  = df[(df.time.dt.year == ano)]
+st.sidebar.info( ' {} Registries'.format(FilteredDF.shape[0]))
+table       = st.sidebar.empty()
+st.sidebar.divider(            )
+st.sidebar.markdown( '''Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
+st.sidebar.divider(            )
+st.sidebar.markdown('''©2023™ [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
+# MAIN:
+st.divider(                               )
+st.title(    '   Criminality in Sao Paulo')
+st.divider(                               )
 st.markdown('''
 **Criminality** is a recurring problem in major Brazilian cities, even though there is a constant effort to solve this matter.
 Data Science technics may help to better understand the situation at hand, generating insights to direct public policy to fight crime.
             ''')
-df.time     =  pd.to_datetime(df.time)
-st.sidebar.title('DashBoard')
-ocorrencias = df.time.dt.year.value_counts().sort_index()
-st.sidebar.bar_chart(ocorrencias, height=200, color='#00BFFF')
-ano         =  st.sidebar.slider('Choose Year:', 2010, 2018, 2014)
-FilteredDF  =  df[(df.time.dt.year == ano)]
-st.sidebar.info( ' {} Registries'.format(FilteredDF.shape[0]))
-if   st.sidebar.checkbox('Data Table', value=True):
-     st.subheader(       'Data:')
-     st.markdown( '''     Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
-     st.markdown(f'''➡️  Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
-     st.write(FilteredDF)
-st.sidebar.write('Map Options:')
-if   st.sidebar.checkbox('3D', value=True):
-     st.subheader('       3D Map:')
+st.divider(                               )
+if   D3.checkbox( '3D', value=True):
+     st.subheader('3D MAP')
      st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
                                                                latitude =-23.55,
                                                                zoom     =  8   ,
@@ -66,13 +71,14 @@ if   st.sidebar.checkbox('3D', value=True):
                                           effects     = None ,
                                           map_provider='carto',
                                           parameters  = None))
-if   st.sidebar.checkbox('2D'):
-     st.subheader('       2D Map:')
+     st.divider(          )
+if   D2.checkbox( '2D'):
+     st.subheader('2D MAP')
      st.map(FilteredDF)
-st.sidebar.divider()
-with st.sidebar.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.markdown('''©2023™''')
-     with cols[2]:st.empty()
+     st.divider(      )
+if   table.checkbox('DataFrame', value=True):
+     st.subheader(       'DATA'            )
+     st.markdown(f'''➡️  Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
+     st.write(FilteredDF)
+     st.divider(        )
 st.toast('Crime!', icon='🔫')
