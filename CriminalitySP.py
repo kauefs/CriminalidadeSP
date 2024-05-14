@@ -12,6 +12,8 @@ df          = load_data()
 df['time']  = pd.to_datetime(df['time'])
 ocorrencias = df['time'].dt.year.value_counts().sort_index()
 # SIDE:
+st.sidebar.title('ƊⱭȾɅViƧi🧿Ƞ')
+st.sidebar.divider(            )
 st.sidebar.markdown('''
 [![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
@@ -33,7 +35,7 @@ table       = st.sidebar.empty()
 st.sidebar.divider(            )
 st.sidebar.markdown( '''Source: [GeoSpatial Sao Paulo Crime DataBase](https://www.kaggle.com/datasets/danlessa/geospatial-sao-paulo-crime-database/data)''')
 st.sidebar.divider(            )
-st.sidebar.markdown('''©2023™ [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
+st.sidebar.markdown('''2023.10.13 &copy; 2024 [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/) &trade;''')
 # MAIN:
 st.divider(                               )
 st.title(    '   Criminality in Sao Paulo')
