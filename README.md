@@ -33,6 +33,8 @@ StreamLit InterActive DashBoard
 
 <p align=center><a href=https://criminality.streamlit.app><img alt=DashBoard src=https://github.com/kauefs/CriminalidadeSP/raw/%40/images/CriminalidadeSP2.png width=75%></a></p>
 
+##
+
 <div align=center>
 
 [![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi&#x1F9FF;Ƞ&trade;-0065FF?style=plastic&label=&copy;2025&labelColor=0065FF)](https://datavision.one/)
