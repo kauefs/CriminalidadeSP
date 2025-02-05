@@ -1,3 +1,5 @@
 pip
+certifi
 pandas
 pydeck
+streamlit<1.42.0
