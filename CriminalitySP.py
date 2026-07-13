@@ -46,7 +46,7 @@ st.markdown('''
 Data Science technics may help to better understand the situation at hand, generating insights to direct public policy to fight crime.
             ''')
 st.divider (                               )
-if   D3.checkbox( '3D', value=True):
+if   D3.checkbox ('3D', value=True):
      st.subheader('3D MAP')
      st.pydeck_chart(pdk.Deck(initial_view_state=pdk.ViewState(longitude=-46.65,
                                                                latitude =-23.55,
@@ -64,8 +64,8 @@ if   D3.checkbox( '3D', value=True):
                                             pickable=True,
                                             extruded=True,
                                             coverage=1)],
-                                          views=[{'@@type':'MapView','controller':True}],
-                                          map_style   ='dark',
+                                         #views=[{'@@type':'MapView','controller':True}],
+                                          map_style   ='mapbox://styles/mapbox/dark-v9',
                                           api_keys    = None ,
                                           width       ='100%',
                                           height      = 500  ,
@@ -77,11 +77,11 @@ if   D3.checkbox( '3D', value=True):
      st.divider  (          )
 if   D2.checkbox ('2D'      ):
      st.subheader('2D MAP'  )
-     st.map      (FilteredDF)
+     st.map      (FilteredDF, use_container_width=True)
      st.divider  (          )
 if   table.checkbox('DataFrame', value=True):
      st.subheader(       'DATA'            )
      st.markdown (f'''➡️  Showing {'**{}** ocurrences'.format(FilteredDF.shape[0])} in **{ano}**:''')
-     st.write    (FilteredDF)
+     st.dataframe(FilteredDF, use_container_width=True)
      st.divider  (          )
 st.toast('Crime!', icon='🔫')
